@@ -65,7 +65,7 @@ pnpm install
 
 ```bash
 # Backend
-pnpm --filter @gasguard/api start:dev
+pnpm --filter @bridgewise/api start:dev
 
 # Frontend
 pnpm --filter web dev
@@ -85,7 +85,7 @@ pnpm build
 
 ```bash
 pnpm add <package> --filter web
-pnpm add <package> --filter @gasguard/api
+pnpm add <package> --filter @bridgewise/api
 ```
 
 ### Add a shared package
