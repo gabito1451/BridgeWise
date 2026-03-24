@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { BridgeModule } from '../module/bridge.module';
-import { BridgeService } from '../bridge.service';
-import { BridgeRegistry } from '../registry/bridge.registry';
-import { BridgeLoader } from '../loaders/bridge.loader';
-import { BridgeAdapter } from '../interfaces/bridge-adapter.interface';
+import { BridgeModule } from './bridge.module';
+import { BridgeService } from './bridge.service';
+import { BridgeRegistry } from './bridge.registry';
+import { BridgeLoader } from './bridge.loader';
+import { BridgeAdapter } from './bridge-adapter.interface';
 
 function makeAdapter(name: string): BridgeAdapter {
   return {

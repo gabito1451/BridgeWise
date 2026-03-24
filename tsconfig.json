@@ -21,14 +21,18 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "lib": ["ES2021", "DOM"],
+    "jsx": "preserve",
     "paths": {
       "@bridgewise/bridge-core": ["libs/bridge-core/src"],
-      "@bridgewise/bridge-core/*": ["libs/bridge-core/src/*"]
+      "@bridgewise/bridge-core/*": ["libs/bridge-core/src/*"],
+      "@/*": ["src/*"]
     }
   },
   "include": [
-    "src/**/*",
-    "libs/bridge-core/src/**/*"
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "libs/bridge-core/src/**/*.ts",
+    "libs/bridge-core/src/**/*.d.ts"
   ],
   "exclude": [
     "apps",
@@ -37,6 +41,7 @@
     "dist",
     "src/src",
     "node_modules",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "src/bridge-compare/mnt/**"
   ]
 }

@@ -1,13 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import * as fs from 'fs';
 import * as path from 'path';
-import { BridgeLoader } from '../loaders/bridge.loader';
-import { BridgeRegistry } from '../registry/bridge.registry';
-import { BridgeAdapter } from '../interfaces/bridge-adapter.interface';
+import { BridgeLoader } from './bridge.loader';
+import { BridgeRegistry } from './bridge.registry';
+import { BridgeAdapter } from './bridge-adapter.interface';
 import {
   BridgeInitializationException,
   BridgeLoadException,
-} from '../exceptions/bridge.exceptions';
+} from './bridge.exceptions';
 
 // ─── Mock helpers ─────────────────────────────────────────────────────────────
 
@@ -107,6 +107,7 @@ describe('BridgeLoader', () => {
 
   describe('loadAdapterFromFile()', () => {
     it('should load and register a valid adapter from file', async () => {
+      jest.doMock('/path/valid.adapter.js', () => ({ default: ValidAdapter }), { virtual: true });
       jest.spyOn(loader as any, 'extractAdapterClass').mockReturnValue(ValidAdapter);
       jest.spyOn(loader as any, 'initializeAdapter').mockResolvedValue(undefined);
       const registerSpy = jest.spyOn(registry, 'register');

@@ -6,11 +6,11 @@ import {
   Provider,
   Type,
 } from '@nestjs/common';
-import { BridgeModuleConfig } from '../interfaces/bridge-config.interface';
-import { BRIDGE_MODULE_CONFIG } from '../interfaces/bridge.tokens';
-import { BridgeRegistry } from '../registry/bridge.registry';
-import { BridgeLoader } from '../loaders/bridge.loader';
-import { BridgeService } from '../bridge.service';
+import { BridgeModuleConfig } from './bridge-config.interface';
+import { BRIDGE_MODULE_CONFIG } from './bridge.tokens';
+import { BridgeRegistry } from './bridge.registry';
+import { BridgeLoader } from './bridge.loader';
+import { BridgeService } from './bridge.service';
 
 export interface BridgeModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
   useFactory: (...args: unknown[]) => Promise<BridgeModuleConfig> | BridgeModuleConfig;

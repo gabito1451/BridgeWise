@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { NormalizedQuote, RankingWeights } from '../interfaces';
-import { RankingMode } from '../enums';
+import { NormalizedQuote, RankingWeights } from './interfaces';
+import { RankingMode } from './enums';
 
 @Injectable()
 export class RankingService {

@@ -1,17 +1,15 @@
 // Simplified Benchmark Module for BridgeWise
 // This is a placeholder implementation that will be enhanced when dependencies are properly configured
 
+import { Module } from '@nestjs/common';
 import { BenchmarkService } from './benchmark.service';
 import { BenchmarkController } from './benchmark.controller';
 
-export class BenchmarkModule {
-  static forRoot() {
-    return {
-      providers: [BenchmarkService],
-      controllers: [BenchmarkController],
-      exports: [BenchmarkService],
-    };
-  }
-}
+@Module({
+  providers: [BenchmarkService],
+  controllers: [BenchmarkController],
+  exports: [BenchmarkService],
+})
+export class BenchmarkModule {}
 
 export { BenchmarkService, BenchmarkController };

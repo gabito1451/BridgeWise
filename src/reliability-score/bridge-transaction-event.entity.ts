@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
   Index,
 } from 'typeorm';
-import { TransactionOutcome } from '../enums/reliability.enum';
+import { TransactionOutcome } from './reliability.enum';
 
 @Entity('bridge_transaction_events')
 @Index(['bridgeName', 'sourceChain', 'destinationChain', 'createdAt'])

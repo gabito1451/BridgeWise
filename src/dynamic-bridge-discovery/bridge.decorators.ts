@@ -1,5 +1,5 @@
 import { Inject } from '@nestjs/common';
-import { BRIDGE_REGISTRY_TOKEN } from '../interfaces/bridge.tokens';
+import { BRIDGE_REGISTRY_TOKEN } from './bridge.tokens';
 
 /**
  * Injects the BridgeRegistry service.

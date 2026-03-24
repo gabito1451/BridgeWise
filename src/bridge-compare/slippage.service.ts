@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { SlippageEstimate, RawBridgeQuote } from '../interfaces';
+import { SlippageEstimate, RawBridgeQuote } from './interfaces';
 
 interface LiquidityPool {
   token: string;

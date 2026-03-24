@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { BridgeAdapter } from '../interfaces/bridge-adapter.interface';
-import { BridgeRegistry } from '../registry/bridge.registry';
-import { BridgeLoader } from '../loaders/bridge.loader';
+import { BridgeAdapter } from './bridge-adapter.interface';
+import { BridgeRegistry } from './bridge.registry';
+import { BridgeLoader } from './bridge.loader';
 
 @Injectable()
 export class BridgeService {

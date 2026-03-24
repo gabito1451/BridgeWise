@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { NormalizedQuote } from '../interfaces/bridge-adapter.interface';
+import { NormalizedQuote } from './bridge-adapter.interface';
 
 export type RankStrategy = 'cost' | 'speed' | 'score';
 

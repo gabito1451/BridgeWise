@@ -6,7 +6,7 @@ import {
   Index,
   Unique,
 } from 'typeorm';
-import { ReliabilityTier } from '../enums/reliability.enum';
+import { ReliabilityTier } from './reliability.enum';
 
 @Entity('bridge_reliability_metrics')
 @Unique(['bridgeName', 'sourceChain', 'destinationChain'])

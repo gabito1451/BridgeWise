@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { ReliabilityMetrics } from '../interfaces';
+import { ReliabilityMetrics } from './interfaces';
 
 @Injectable()
 export class ReliabilityService {

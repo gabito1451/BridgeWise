@@ -1,10 +1,3 @@
-export * from './bridge-compare.module';
-export * from './bridge-compare.service';
-export * from './bridge-compare.controller';
-export * from './aggregation.service';
-export * from './slippage.service';
-export * from './reliability.service';
-export * from './ranking.service';
-export * from './interfaces';
-export * from './enums';
-export * from './dto';
+// Keep this generated output file harmless to TS tooling.
+// It should never be used for normal compilation, but we keep it present for tooling safety.
+export const generated = true;

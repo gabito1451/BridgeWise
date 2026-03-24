@@ -15,6 +15,8 @@ export class BridgeDuplicateException extends Error {
 }
 
 export class BridgeInitializationException extends Error {
+  public readonly cause: Error;
+
   constructor(name: string, cause: Error) {
     super(`Bridge adapter "${name}" failed to initialize: ${cause.message}`);
     this.name = 'BridgeInitializationException';
@@ -23,6 +25,8 @@ export class BridgeInitializationException extends Error {
 }
 
 export class BridgeLoadException extends Error {
+  public readonly cause: Error;
+
   constructor(path: string, cause: Error) {
     super(`Failed to load bridge from path "${path}": ${cause.message}`);
     this.name = 'BridgeLoadException';

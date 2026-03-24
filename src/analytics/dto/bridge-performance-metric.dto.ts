@@ -265,12 +265,12 @@ export class BridgePerformanceComparisonResponseDto {
 export class TriggerAggregationDto {
   @ApiPropertyOptional({
     description: 'Time interval to aggregate',
-    enum: TimeInterval,
-    default: TimeInterval.DAILY,
+    enum: TimeIntervalEnum,
+    default: TimeIntervalEnum.DAILY,
   })
   @IsOptional()
-  @IsEnum(TimeInterval)
-  timeInterval?: TimeInterval = TimeInterval.DAILY;
+  @IsEnum(TimeIntervalEnum)
+  timeInterval?: TimeIntervalEnum = TimeIntervalEnum.DAILY;
 
   @ApiPropertyOptional({ description: 'Date to aggregate (defaults to previous period)' })
   @IsOptional()

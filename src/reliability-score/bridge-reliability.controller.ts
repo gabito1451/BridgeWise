@@ -19,8 +19,8 @@ import {
   GetReliabilityDto,
   RecordBridgeEventDto,
   ReliabilityRankingFactorDto,
-} from './dto/reliability.dto';
-import { BridgeReliabilityMetric } from './entities/bridge-reliability-metric.entity';
+} from './reliability.dto';
+import { BridgeReliabilityMetric } from './bridge-reliability-metric.entity';
 
 @ApiTags('Bridge Reliability')
 @Controller('bridge-reliability')

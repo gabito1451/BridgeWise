@@ -1,10 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { BridgeAdapter, BridgeCapability } from '../interfaces/bridge-adapter.interface';
+import { BridgeAdapter, BridgeCapability } from './bridge-adapter.interface';
 import {
   BridgeCapabilityNotFoundException,
   BridgeDuplicateException,
   BridgeNotFoundException,
-} from '../exceptions/bridge.exceptions';
+} from './bridge.exceptions';
 
 export interface BridgeRegistryEntry {
   adapter: BridgeAdapter;

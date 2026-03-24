@@ -1,6 +1,6 @@
 import { Injectable, Logger, HttpException, HttpStatus } from '@nestjs/common';
-import { RawBridgeQuote, BridgeProvider, QuoteRequestParams } from '../interfaces';
-import { BridgeStatus } from '../enums';
+import { RawBridgeQuote, BridgeProvider, QuoteRequestParams } from './interfaces';
+import { BridgeStatus } from './enums';
 
 interface MockQuoteTemplate {
   feesUsd: number;

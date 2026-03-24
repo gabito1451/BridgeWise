@@ -3,9 +3,9 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BridgeReliabilityService } from './bridge-reliability.service';
 import { ReliabilityCalculatorService } from './reliability-calculator.service';
-import { BridgeTransactionEvent } from './entities/bridge-transaction-event.entity';
-import { BridgeReliabilityMetric } from './entities/bridge-reliability-metric.entity';
-import { TransactionOutcome, WindowMode, ReliabilityTier } from './enums/reliability.enum';
+import { BridgeTransactionEvent } from './bridge-transaction-event.entity';
+import { BridgeReliabilityMetric } from './bridge-reliability-metric.entity';
+import { TransactionOutcome, WindowMode, ReliabilityTier } from './reliability.enum';
 import { RecordBridgeEventDto, GetReliabilityDto } from './dto/reliability.dto';
 
 // ─── Mock Factory ──────────────────────────────────────────────────────────────

@@ -5,8 +5,8 @@ import {
   BridgeAdapter,
   NormalizedQuote,
   QuoteRequest,
-} from '../interfaces/bridge-adapter.interface';
-import { CompareQuotesResponseDto } from '../dto/get-quotes.dto';
+} from './bridge-adapter.interface';
+import { CompareQuotesResponseDto } from './get-quotes.dto';
 
 export const QUOTE_TIMEOUT_MS = 10_000;
 

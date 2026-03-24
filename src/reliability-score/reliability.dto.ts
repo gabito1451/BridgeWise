@@ -8,8 +8,7 @@ import {
   Min,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { TransactionOutcome, WindowMode } from '../enums/reliability.enum';
-import { ReliabilityTier } from '../enums/reliability.enum';
+import { ReliabilityTier, TransactionOutcome, WindowMode } from './reliability.enum';
 
 // ─── Record Event ────────────────────────────────────────────────────────────
 export class RecordBridgeEventDto {

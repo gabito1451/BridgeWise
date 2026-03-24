@@ -1,9 +1,9 @@
 import { Module, OnModuleInit } from '@nestjs/common';
-import { BridgeRegistryService } from './services/bridge-registry.service';
-import { FeeAggregationService } from './services/fee-aggregation.service';
-import { QuoteScoringService } from './services/quote-scoring.service';
+import { BridgeRegistryService } from './bridge-registry.service';
+import { FeeAggregationService } from './fee-aggregation.service';
+import { QuoteScoringService } from './quote-scoring.service';
 import { QuotesController } from './quotes.controller';
-import { AcrossAdapter, HopAdapter, StargateAdapter } from './adapters/bridge.adapters';
+import { AcrossAdapter, HopAdapter, StargateAdapter } from './bridge.adapters';
 
 @Module({
   controllers: [QuotesController],

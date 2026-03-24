@@ -13,10 +13,10 @@ import {
   ApiResponse,
   ApiQuery,
 } from '@nestjs/swagger';
-import { FeeAggregationService } from './services/fee-aggregation.service';
-import { GetQuotesDto, CompareQuotesResponseDto } from './dto/get-quotes.dto';
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
+import { FeeAggregationService } from './fee-aggregation.service';
+import { CompareQuotesResponseDto, GetQuotesDto } from './get-quotes.dto';
 
 @ApiTags('Bridge Quotes')
 @Controller('quotes')

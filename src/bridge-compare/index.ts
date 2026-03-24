@@ -1,4 +1,4 @@
-import { BridgeStatus, RankingMode } from '../enums';
+import { BridgeStatus, RankingMode } from './enums';
 
 export interface NormalizedQuote {
   bridgeId: string;

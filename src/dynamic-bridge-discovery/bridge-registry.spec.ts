@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { BridgeRegistry } from '../registry/bridge.registry';
-import { BridgeAdapter } from '../interfaces/bridge-adapter.interface';
+import { BridgeRegistry } from './bridge.registry';
+import { BridgeAdapter } from './bridge-adapter.interface';
 import {
   BridgeCapabilityNotFoundException,
   BridgeDuplicateException,
   BridgeNotFoundException,
-} from '../exceptions/bridge.exceptions';
+} from './bridge.exceptions';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 

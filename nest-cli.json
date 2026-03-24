@@ -4,6 +4,10 @@
   "sourceRoot": "src",
   "compilerOptions": {
     "deleteOutDir": true,
-    "exclude": ["apps/**", "examples/**", "**/*.spec.ts"]
+    "exclude": [
+      "apps/**",
+      "examples/**",
+      "**/*.spec.ts"
+    ]
   }
 }

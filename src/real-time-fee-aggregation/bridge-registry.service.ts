@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { BridgeAdapter } from '../interfaces/bridge-adapter.interface';
+import { BridgeAdapter } from './bridge-adapter.interface';
 
 export const BRIDGE_ADAPTERS = 'BRIDGE_ADAPTERS';
 

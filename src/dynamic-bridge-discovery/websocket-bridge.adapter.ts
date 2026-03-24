@@ -1,5 +1,5 @@
-import { BridgeAdapter, BridgeCapability } from '../interfaces/bridge-adapter.interface';
-import { BridgePlugin } from '../decorators/bridge.decorators';
+import { BridgeAdapter, BridgeCapability } from './bridge-adapter.interface';
+import { BridgePlugin } from './bridge.decorators';
 
 @BridgePlugin({ name: 'ws-bridge', version: '1.0.0' })
 export class WebSocketBridgeAdapter implements BridgeAdapter {

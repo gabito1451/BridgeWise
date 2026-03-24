@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ReliabilityCalculatorService, RawCounts } from './reliability-calculator.service';
-import { ReliabilityTier, WindowMode } from './enums/reliability.enum';
-import { RELIABILITY_CONSTANTS } from './constants/reliability.constants';
+import { ReliabilityTier, WindowMode } from './reliability.enum';
+import { RELIABILITY_CONSTANTS } from './reliability.constants';
 
 describe('ReliabilityCalculatorService', () => {
   let service: ReliabilityCalculatorService;
