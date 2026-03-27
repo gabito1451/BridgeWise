@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "resolvePackageJsonExports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2023",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@bridgewise/bridge-core": ["../../packages/utils/src"],
+      "@bridgewise/bridge-core/*": ["../../packages/utils/src/*"],
+      "@bridgewise/ui-components": ["../../packages/ui/src"],
+      "@bridgewise/ui-components/*": ["../../packages/ui/src/*"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "./src/**/*.ts",
+    "../../packages/utils/src/**/*.ts"
+  ],
+  "exclude": [
+    "./src/**/*.spec.ts",
+    "./src/**/*.e2e-spec.ts",
+    "../../packages/utils/src/**/__tests__/**",
+    "../../apps/**",
+    "../../examples/**",
+    "../../packages/**",
+    "../../dist/**",
+    "../../node_modules/**"
+  ]
+}

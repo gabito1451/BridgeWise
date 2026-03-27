@@ -1,12 +1,8 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "ES2017",
-    "baseUrl": ".",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,10 +19,13 @@
         "name": "next"
       }
     ],
+    "baseUrl": "./",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@bridgewise/bridge-core": ["../../packages/utils/src"],
+      "@bridgewise/bridge-core/*": ["../../packages/utils/src/*"],
+      "@bridgewise/ui-components": ["../../packages/ui/src"],
+      "@bridgewise/ui-components/*": ["../../packages/ui/src/*"],
+      "@/*": ["./*"]
     }
   },
   "include": [
