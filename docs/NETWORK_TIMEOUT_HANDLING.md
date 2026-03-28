@@ -33,10 +33,14 @@ const client = new RateLimitedApiClient({
 You can override timeout for a specific request:
 
 ```js
-await client.get('/api/quote', {}, {
-  group: 'quotes',
-  timeout: 3000,
-});
+await client.get(
+  '/api/quote',
+  {},
+  {
+    group: 'quotes',
+    timeout: 3000,
+  },
+);
 ```
 
 ## Retry integration
