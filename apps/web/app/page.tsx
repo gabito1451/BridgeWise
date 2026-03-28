@@ -8,6 +8,7 @@ import {
   useTransaction,
   BridgeStatus,
 } from '@bridgewise/ui-components';
+import VersionDisplay from '../components/VersionDisplay';
 
 const customTheme = {
   primaryColor: '#22c55e',
@@ -109,6 +110,15 @@ function TransactionDemo() {
               </p>
             </div>
           </section>
+
+          {/* SDK Version Display */}
+          <footer className="w-full flex justify-center mt-8">
+            <VersionDisplay 
+              showDetails={false}
+              enableLogging={true}
+              onClick={(v) => console.log('Version clicked:', v)}
+            />
+          </footer>
 
           <TransactionHeartbeat className="left-4 right-auto" />
         </main>
