@@ -217,13 +217,40 @@ export class RateLimitedApiClient {
   /**
    * Perform a fetch with a per-request timeout.
    */
-  async _fetchWithTimeout(url, options) {
+  async _fetchWithTimeout(url, options, timeoutMs = this.config.timeout) {
+    const upstreamSignal = options?.signal;
+
+    if (upstreamSignal?.aborted) {
+      const abortError = new Error("Request aborted before fetch");
+      abortError.name = "AbortError";
+      abortError.code = "REQUEST_ABORTED";
+      throw abortError;
+    }
+
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), this.config.timeout);
+    const onUpstreamAbort = () => controller.abort();
+    upstreamSignal?.addEventListener("abort", onUpstreamAbort, { once: true });
+
+    let timer;
+    const timeoutPromise = new Promise((_, reject) => {
+      timer = setTimeout(() => {
+        controller.abort();
+        const timeoutError = new Error(`Request timed out after ${timeoutMs}ms`);
+        timeoutError.name = "TimeoutError";
+        timeoutError.code = "REQUEST_TIMEOUT";
+        timeoutError.timeoutMs = timeoutMs;
+        reject(timeoutError);
+      }, timeoutMs);
+    });
+
     try {
-      return await fetch(url, { ...options, signal: controller.signal });
+      return await Promise.race([
+        fetch(url, { ...options, signal: controller.signal }),
+        timeoutPromise,
+      ]);
     } finally {
       clearTimeout(timer);
+      upstreamSignal?.removeEventListener("abort", onUpstreamAbort);
     }
   }
 
@@ -237,6 +264,7 @@ export class RateLimitedApiClient {
    * @param {object}  requestConfig
    * @param {string}  requestConfig.group        – logical group for rate limiting ("quotes"|"fees"|"liquidity")
    * @param {number}  requestConfig.maxRetries   – override global maxRetries
+  * @param {number}  requestConfig.timeout      – per-request timeout in ms (overrides global timeout)
    * @param {boolean} requestConfig.bypassQueue  – skip queue (use sparingly)
    * @returns {Promise<Response>}
    */
@@ -260,6 +288,7 @@ export class RateLimitedApiClient {
   async _execute(url, options, requestConfig) {
     const group      = requestConfig.group ?? "default";
     const maxRetries = requestConfig.maxRetries ?? this.config.maxRetries;
+    const requestTimeout = requestConfig.timeout ?? this.config.timeout;
     const bucket     = this._getBucket(group);
     const breaker    = this._getBreaker(group);
 
@@ -283,7 +312,7 @@ export class RateLimitedApiClient {
     let lastError;
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
       try {
-        const response = await this._fetchWithTimeout(url, options);
+        const response = await this._fetchWithTimeout(url, options, requestTimeout);
 
         // Success path
         if (response.ok) {
@@ -335,9 +364,11 @@ export class RateLimitedApiClient {
 
         lastError = err;
         if (attempt < maxRetries) {
+          const isTimeout = err.code === "REQUEST_TIMEOUT" || err.name === "TimeoutError";
           const isAbort = err.name === "AbortError";
           const backoff = computeBackoffDelay(attempt, this.config);
-          console.warn(`[BridgeWise] ${isAbort ? "Timeout" : "Network error"} (group=${group}). Retrying in ${backoff}ms (${attempt + 1}/${maxRetries})…`);
+          const errorKind = isTimeout ? "Timeout" : isAbort ? "Abort" : "Network error";
+          console.warn(`[BridgeWise] ${errorKind} (group=${group}). Retrying in ${backoff}ms (${attempt + 1}/${maxRetries})…`);
           this.metrics.retriedRequests++;
           await sleep(backoff);
         }

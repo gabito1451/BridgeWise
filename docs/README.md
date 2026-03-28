@@ -46,6 +46,11 @@ Welcome to the BridgeWise API documentation! This comprehensive guide covers eve
   - Quality metrics
   - Next steps
 
+- **[NETWORK_TIMEOUT_HANDLING.md](./NETWORK_TIMEOUT_HANDLING.md)** - RELIABILITY
+  - Timeout limits for slow/unresponsive APIs
+  - Retry behavior on timeout failures
+  - Simulation/testing guidance
+
 ---
 
 ## 🚀 Quick Start

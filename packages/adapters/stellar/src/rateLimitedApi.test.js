@@ -165,6 +165,61 @@ describe("RateLimitedApiClient — network errors & timeout", () => {
     await expect(promise).resolves.toBeDefined();
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
+
+  it("enforces timeout, retries, and eventually succeeds", async () => {
+    const fetchMock = vi
+      .fn()
+      // First attempt hangs forever (simulates unresponsive API)
+      .mockImplementationOnce(() => new Promise(() => {}))
+      // Retry succeeds
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        headers: { get: () => null },
+        json: async () => ({ ok: true }),
+      });
+
+    globalThis.fetch = fetchMock;
+
+    const client = new RateLimitedApiClient({
+      maxRetries: 2,
+      baseDelay: 10,
+      timeout: 20,
+      rateLimitPerSecond: 100,
+    });
+
+    const promise = client.get("/api/quote", {}, { group: "quotes" });
+    await vi.runAllTimersAsync();
+
+    await expect(promise).resolves.toBeDefined();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(client.getMetrics().retriedRequests).toBe(1);
+  });
+
+  it("supports per-request timeout override", async () => {
+    const fetchMock = vi.fn().mockImplementation(() => new Promise(() => {}));
+    globalThis.fetch = fetchMock;
+
+    const client = new RateLimitedApiClient({
+      maxRetries: 0,
+      timeout: 1000,
+      rateLimitPerSecond: 100,
+    });
+
+    const promise = client.get("/api/quote", {}, {
+      group: "quotes",
+      timeout: 25,
+    });
+
+    await vi.runAllTimersAsync();
+
+    await expect(promise).rejects.toMatchObject({
+      code: "REQUEST_TIMEOUT",
+      name: "TimeoutError",
+      timeoutMs: 25,
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
 });
 
 describe("CircuitBreaker integration", () => {
