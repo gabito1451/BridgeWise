@@ -90,6 +90,9 @@ export * from './unified-adapter';
 // Token Pair Compatibility Engine
 export * from './compatibility';
 
+// SDK Version
+export * from './version';
+
 /**
  * Main function to get aggregated bridge routes
  *
