@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "sideEffects": false,
   "scripts": {
-    "test": "jest --config jest.config.js"
+    "test": "jest --config jest.config.js",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "main": "src/index.ts",
   "exports": {
